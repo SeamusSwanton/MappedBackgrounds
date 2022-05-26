@@ -134,13 +134,35 @@ public class SMSRSprite implements DisplayableSprite, MovableSprite {
 
 
 	public void update(Universe universe, KeyboardInput keyboard, long actual_delta_time) {
+		System.out.println(velocityX);
 		
 		elapsedTime += actual_delta_time;
+		
+		velocityX = 0;
+		velocityY = 0;
 		
 		
 		this.centerX += actual_delta_time * 0.001 * velocityX;
 		this.centerY += actual_delta_time * 0.001 * velocityY;
 		
+		//LEFT ARROW
+		if (keyboard.keyDown(37)) {
+			velocityX = -VELOCITY;
+		}
+		//UP ARROW
+		if (keyboard.keyDown(38)) {
+			velocityY = -VELOCITY;			
+		}
+		//RIGHT ARROW
+		if (keyboard.keyDown(39)) {
+			velocityX += VELOCITY;
+		}
+		// DOWN ARROW
+		if (keyboard.keyDown(40)) {
+			velocityY += VELOCITY;			
+		}
+		
+		//animation
 		if (velocityY < 0) {
 			direction = Direction.UP;
 		}
